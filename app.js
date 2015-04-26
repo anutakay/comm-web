@@ -2,10 +2,6 @@ var express = require('express');
 
 var app = express.createServer();
 
-app.get('/', function(req, res) {
-    res.send('hello world');
-});
-
 app.configure(function() {
     app.use( express.methodOverride() );
     app.use( express.bodyParser() );
@@ -26,4 +22,20 @@ app.listen(3000, function() {
   console.log("Express server listening on port %d in %s mode",
               app.address().port,
               app.settings.env);
+});
+
+app.get('/', function(req, res) {
+    res.send('hello world');
+});
+
+app.get('/operation/:id', function(req, res){
+    res.send('operation ' + req.params.id);
+});
+
+app.get('/building/:id', function(req, res){
+    res.send('building ' + req.params.id);
+});
+
+app.get('/action/:id', function(req, res){
+    res.send('action ' + req.params.id);
 });
