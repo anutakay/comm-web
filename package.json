@@ -4,6 +4,7 @@
     "private": true,
     "dependencies": {
       "express": "2.5.8",
-      "ejs": ">= 0.0.1"
+      "ejs": ">= 0.0.1",
+      "localize": "0.4.4"
     }
 }

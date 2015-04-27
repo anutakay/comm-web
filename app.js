@@ -26,11 +26,11 @@ app.listen(3000, function() {
 });
 
 app.get('/', function(req, res) {
-    res.render('index', { title: 'The index page!' } );
+    res.render('index', { title: 'Главная страница' } );
 });
 
 app.get('/operations', function(req, res) {
-    res.send('operations');
+    res.render('index', { title: 'Типы работ' } );
 });
 
 app.get('/operation/:id', function(req, res) {
@@ -38,7 +38,7 @@ app.get('/operation/:id', function(req, res) {
 });
 
 app.get('/buildings', function(req, res) {
-    res.send('buildings');
+     res.render('index', { title: 'Обслуживаемые дома' } );
 });
 
 app.get('/building/:id', function(req, res) {
@@ -46,7 +46,7 @@ app.get('/building/:id', function(req, res) {
 });
 
 app.get('/actions', function(req, res) {
-    res.send('actions');
+    res.render('index', { title: 'Выполненные работы' } );
 });
 
 app.get('/action/:id', function(req, res) {
