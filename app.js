@@ -29,12 +29,24 @@ app.get('/', function(req, res) {
     res.render('index', { title: 'The index page!' } );
 });
 
+app.get('/operations', function(req, res) {
+    res.send('operations');
+});
+
 app.get('/operation/:id', function(req, res) {
     res.send('operation ' + req.params.id);
 });
 
+app.get('/buildings', function(req, res) {
+    res.send('buildings');
+});
+
 app.get('/building/:id', function(req, res) {
     res.send('building ' + req.params.id);
+});
+
+app.get('/actions', function(req, res) {
+    res.send('actions');
 });
 
 app.get('/action/:id', function(req, res) {
