@@ -3,11 +3,12 @@ var express = require('express');
 var app = express.createServer();
 
 app.configure(function() {
-    app.use( express.methodOverride() );
-    app.use( express.bodyParser() );
-    app.use(app.router);
+  app.set('views', __dirname + '/views');
+  app.set('view engine', 'ejs');
 
-    app.set('view engine', 'ejs');
+  app.use( express.methodOverride() );
+  app.use( express.bodyParser() );
+  app.use(app.router);  
 });
 
 app.configure('development', function() {
@@ -25,17 +26,17 @@ app.listen(3000, function() {
 });
 
 app.get('/', function(req, res) {
-    res.send('hello world');
+    res.render('index', { title: 'The index page!' } );
 });
 
-app.get('/operation/:id', function(req, res){
+app.get('/operation/:id', function(req, res) {
     res.send('operation ' + req.params.id);
 });
 
-app.get('/building/:id', function(req, res){
+app.get('/building/:id', function(req, res) {
     res.send('building ' + req.params.id);
 });
 
-app.get('/action/:id', function(req, res){
+app.get('/action/:id', function(req, res) {
     res.send('action ' + req.params.id);
 });
