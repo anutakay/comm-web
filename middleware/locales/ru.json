@@ -1,0 +1,16 @@
+{
+	"main": {
+		"long": "main.long",
+		"short": "main.short"
+	},
+	"operations": {
+		"long": "operations.long",
+		"short": "operations.short"
+	},
+	"buildings": {
+		"short": "buildings.short"
+	},
+	"actions": {
+		"short": "actions.short"
+	}
+}
