@@ -1,8 +1,17 @@
 var express = require('express');
+var i18n = require("i18n");
+
+i18n.configure({
+    locales:['ru', 'en'],
+    defaultLocale: 'ru',
+    directory: __dirname + '/locales'
+});
 
 var app = express.createServer();
 
 app.configure(function() {
+  app.use(i18n.init);
+
   app.set('views', __dirname + '/views');
   app.set('view engine', 'ejs');
 
@@ -51,4 +60,9 @@ app.get('/actions', function(req, res) {
 
 app.get('/action/:id', function(req, res) {
     res.send('action ' + req.params.id);
+});
+
+app.get('/str', function(req, res) {
+  var greeting = res.__('hello');
+  res.send(greeting);
 });
