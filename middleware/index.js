@@ -2,6 +2,7 @@ module.exports = function (app, express) {
   var router = require('../routes'),
 	  i18n = require('i18n'),
     session = require('express-session'),
+    expressLayouts = require('express-ejs-layouts'),
     bodyParser = require('body-parser'),
     cookieParser = require('cookie-parser'),
     methodOverride = require('method-override'),
@@ -30,7 +31,8 @@ module.exports = function (app, express) {
   }) );
   app.use( methodOverride() );
   app.use(i18n.init);
-  
+  app.use(expressLayouts);
+
   router(app); 
 
   app.use( errorHandler({ dumpExceptions: true, showStack: true }) );
