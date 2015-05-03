@@ -5,10 +5,10 @@ var main = require('./main'),
 
 module.exports = function (app) {
   app.get('/', main.home);
-  app.get('/operations', operations.main);
+  app.get('/operations', operations.list);
   app.get('/operation/:id', operations.entity);
-  app.get('/buildings', buildings.main);
+  app.get('/buildings', buildings.list);
   app.get('/building/:id', buildings.entity);
-  app.get('/actions', actions.main);
+  app.get('/actions', actions.list);
   app.get('/action/:id', actions.entity);
 }
