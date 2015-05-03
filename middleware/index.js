@@ -6,7 +6,7 @@ module.exports = function (app, express) {
       cookieParser = require('cookie-parser'),
       methodOverride = require('method-override'),
       errorHandler = require('errorhandler'),
-      mongoStore = require('connect-mongo')(session),
+      MongoStore = require('connect-mongo')(session),
       mongoose = require('mongoose');
 
     i18n.configure({
@@ -21,7 +21,15 @@ module.exports = function (app, express) {
 
     app.use( bodyParser() );
     app.use( cookieParser() );
-    app.use( session({  secret: "my_secret" }) );
+    app.use( session({  
+      secret: "my_secret",
+      store: new MongoStore({
+        // Basic usage
+        host: 'localhost', // Default, optional
+        port: 27017, // Default, optional
+        db: 'comm-web-database' // Required
+      }) 
+    }) );
     app.use( methodOverride() );
     app.use(i18n.init);
     app.use(expressLayouts);
