@@ -1,10 +1,10 @@
 var express = require('express'),
-    app = express.createServer(),   
+    app = express(),   
     middleware = require('./middleware')(app, express),
     config = require('./config');
 
 app.listen(config.port, function() {
   console.log("Express server listening on port %d in %s mode",
-              app.address().port,
+              config.port,
               app.settings.env);
 });

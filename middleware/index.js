@@ -1,7 +1,12 @@
 module.exports = function (app, express) {
   var router = require('../routes'),
 	  i18n = require('i18n'),
-    mongoStore = require('connect-mongo')(express),
+    session = require('express-session'),
+    bodyParser = require('body-parser'),
+    cookieParser = require('cookie-parser'),
+    methodOverride = require('method-override'),
+    errorHandler = require('errorhandler'),
+    mongoStore = require('connect-mongo')(session),
     mongoose = require('mongoose');
 
   i18n.configure({
@@ -11,32 +16,22 @@ module.exports = function (app, express) {
     objectNotation: true
   });
   
-  app.configure(function() {
-  	app.set('views', __dirname + '/../views');
-    app.set('view engine', 'ejs');
-    app.helpers({
-      'l': i18n.__,
-      'ln': i18n.__n
-    });
+  app.set('views', __dirname + '/../views');
+  app.set('view engine', 'ejs');
+  /*app.helpers({
+    'l': i18n.__,
+    'ln': i18n.__n
+  });*/
 
-    app.use( express.bodyParser() );
-    app.use( express.cookieParser() );
-    app.use( express.session({
-      secret: "my_secret"
-    }) );
-    app.use( express.methodOverride() );
-    app.use(i18n.init);
-    app.use(app.router);
-  });
-
-  app.configure('development', function() {
-    app.use( express.errorHandler({ dumpExceptions: true, showStack: true }) );
-  });
-
-  app.configure('production', function() {
-   app.use( express.errorHandler() );
-  });
-
+  app.use( bodyParser() );
+  app.use( cookieParser() );
+  app.use( session({
+    secret: "my_secret"
+  }) );
+  app.use( methodOverride() );
+  app.use(i18n.init);
+  
   router(app); 
 
+  app.use( errorHandler({ dumpExceptions: true, showStack: true }) );
 }
