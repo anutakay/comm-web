@@ -1,6 +1,8 @@
 module.exports = function (app, express) {
   var router = require('../routes'),
-	  i18n = require('i18n');
+	  i18n = require('i18n'),
+    mongoStore = require('connect-mongo')(express),
+    mongoose = require('mongoose');
 
   i18n.configure({
     locales:['ru', 'en'],
