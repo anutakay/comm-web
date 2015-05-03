@@ -1,7 +1,6 @@
 module.exports = function (app, express) {
   var router = require('../routes'),
-	  i18n = require('i18n'),
-	  ejs = require('ejs');
+	  i18n = require('i18n');
 
   i18n.configure({
     locales:['ru', 'en'],

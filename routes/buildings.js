@@ -1,4 +1,4 @@
-exports.main = function(req, res) {
+exports.list = function(req, res) {
   res.render('index', { title: res.__('buildings.long') } );
 }
 
