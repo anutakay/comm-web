@@ -18,6 +18,10 @@ module.exports = function (app, express) {
     });
 
     app.use( express.bodyParser() );
+    app.use( express.cookieParser() );
+    app.use( express.session({
+      secret: "my_secret"
+    }) );
     app.use( express.methodOverride() );
     app.use(i18n.init);
     app.use(app.router);
